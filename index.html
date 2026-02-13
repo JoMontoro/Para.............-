@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="loading">
+  <div id="loader" class="loader">
+    <div class="loader-content">
+      <div class="spinner" aria-hidden="true"></div>
+      <div class="progress">Desbloquear carta: <span id="progressPercent">0%</span></div>
+      <div class="loader-form">
+        <input id="visitorName" type="text" placeholder="Tu nombre" aria-label="Tu nombre">
+        <input id="unlockSlider" type="range" min="0" max="100" value="0" aria-label="Desliza para abrir">
+        <button id="enterBtn" class="loader-btn" disabled>Entrar</button>
+      </div>
+    </div>
+  </div>
+  <main>
+    <div class="container-letter">
+      <div class="cover"></div>
+      <span class="heart">♥</span>
+    <p class="paper" id="mainMessage">
+Feliz Día del Amor y la Amistad, Yadhira 💜
+Desde que te conocí gracias a Diego, te convertiste en una de las personas más especiales en mi vida. Siempre logras darme tranquilidad y sacarme una sonrisa cada vez que te veo.
+Me encanta pasar tiempo contigo, aprender algo nuevo cuando estás y agradezco ser parte de tu rutina. Gracias por tu amistad, tu compañía y nuestras noches de anime.
+Que este día esté lleno de abrazos, risas y todo lo que te haga feliz. 💜✨</p>
+    <div class="letter"></div>
+    </div>
+      <div class="options">
+      <button id="open">Abrir</button>
+      <button id="close">Cerrar</button>
+    </div>
+  </main>
+  <audio id="bgMusic" src="/Grupo Frontera, Fuerza Regida - COQUETA (Letra Oficial).mp3" loop></audio>
+  <script src="script.js"></script>
+</body>
+</html>

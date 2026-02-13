@@ -1,0 +1,264 @@
+/* reset css */
+
+* {
+  min-width: 0;
+  font: inherit;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+video,
+svg {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* styles */
+/* TODO: Cambiar la fuente
+
+* {
+  font-family: comic-sans;
+} */
+
+body {
+  background-color: #c78ef5;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container-letter {
+  position: relative;
+}
+
+.cover {
+  position: absolute;
+  border-left: 300px solid transparent;
+  border-right: 300px solid transparent;
+  border-top: 150px solid #ac54c2;
+  border-bottom: 150px solid transparent;
+
+  /*  */
+  transition: transform .75s;
+  transform-origin: top;
+}
+
+.paper  {
+position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1.2rem; 
+  line-height: 1.5rem;
+  z-index: -1;
+  background: white;
+
+  width: 600px;        /* ahora cabe dentro del sobre */
+  max-height: 300px;   /* mismo tamaño visual del sobre */
+  overflow-y: auto;    /* scroll si el texto es largo */
+
+  border-radius: 8px;
+  transition: all .75s;
+}
+
+
+
+.letter {
+  border-left: 300px solid #e96ce9;
+  border-right: 300px solid #e96ce9;
+  border-top: 150px solid transparent;
+  border-bottom: 150px solid #f895e8;
+}
+
+.options {
+  display: flex;
+  gap: 5rem;
+
+  & button {
+    color: #ff3234;
+    font-weight: 600;
+    border-radius: 3px;
+    background: #fad7df;
+    padding: 0.5rem 1rem;
+    border: 1px solid #fe3334;
+    cursor: pointer;
+  }
+
+  & button:hover {
+    background: #e96ce9;
+    color: white;
+  }
+}
+
+.open-cover {
+  transform: rotatex(180deg);
+}
+
+.open-paper {
+  animation: openPaper .5s forwards;
+}
+
+@keyframes openPaper {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -190px;
+  }
+}
+
+.close-paper {
+  animation: closePaper .5s forwards;
+}
+
+@keyframes closePaper {
+  0% {
+    top: -120px;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+
+.heart {
+  display: none;
+  position: absolute;
+  top: 25%;
+  left: 46.5%;
+  margin: auto;
+  font-size: 3rem;
+
+  color: #9f00fc;
+
+  animation: crecer 1s forwards ;
+}
+
+@keyframes crecer {
+  0% {
+    scale: 1;
+    opacity: 1;
+  }
+  100% {
+    scale: 3;
+    opacity: 0;
+
+  }
+}
+
+/* Loader / splash */
+.loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg,#f6c1ff 0%, #c78ef5 100%);
+  z-index: 9999;
+}
+.loader-content {
+  background: rgba(255,255,255,0.9);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+.spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin: 0 auto 0.75rem auto;
+  border: 5px solid #f3c7f9;
+  border-top-color: #ac54c2;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.progress {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.loader-btn {
+  background: #ac54c2;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.loader-btn:hover { filter: brightness(0.95); }
+
+/* hide main while loading */
+body.loading main { display: none; }
+/* hide loader when finished */
+.loader.hidden { display: none; }
+
+/* loader form */
+.loader-form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+.loader-form input[type="text"] {
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #e6b6f0;
+  width: 160px;
+}
+.loader-form input[type="range"] {
+  -webkit-appearance: none;
+  width: 160px;
+  height: 8px;
+  background: linear-gradient(90deg,#e6b6f0 0%, #f3c7f9 100%);
+  border-radius: 999px;
+  outline: none;
+}
+.loader-form input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  border: 3px solid #ac54c2;
+}
+.loader-form input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  border: 3px solid #ac54c2;
+}
+.loader-btn:disabled { opacity: 0.45; cursor: not-allowed; }
