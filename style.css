@@ -81,11 +81,13 @@ position: absolute;
   line-height: 1.5rem;
   z-index: -1;
   background: white;
+  pointer-events: auto;
 
   width: 600px;        /* ahora cabe dentro del sobre */
   height: 300px;       /* altura fija igual al sobre */
-  overflow-y: auto;    /* scroll si el texto es largo */
+  overflow-y: scroll;  /* siempre mostrar scroll si es necesario */
   overflow-x: hidden;  /* no scroll horizontal */
+  -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
 
   border-radius: 8px;
   transition: all .75s;
@@ -114,13 +116,15 @@ position: absolute;
   }
 
 .paper {
-    width: 280px;
-    height: 145px;
-    padding: 0.8rem;
-    font-size: 0.85rem;
-    line-height: 1.2rem;
-    overflow-y: auto;
+    width: 260px;
+    height: 140px;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    overflow-y: scroll;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    pointer-events: auto;
   }
 
   .letter {
@@ -372,3 +376,48 @@ body.loading main { display: none; }
   border: 3px solid #ac54c2;
 }
 .loader-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* Estilos específicos para Samsung Galaxy A35 5G (portrait) */
+@media only screen and (width: 412px) and (orientation: portrait) {
+  .cover {
+    border-left: 180px solid transparent;
+    border-right: 180px solid transparent;
+    border-top: 120px solid #ac54c2;
+    border-bottom: 120px solid transparent;
+  }
+
+  .letter {
+    border-left: 180px solid #e96ce9;
+    border-right: 180px solid #e96ce9;
+    border-top: 120px solid transparent;
+    border-bottom: 120px solid #f895e8;
+  }
+
+  .paper {
+    width: 340px;
+    height: 420px;
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    pointer-events: auto;
+    z-index: -1; /* por defecto queda detrás hasta que se abra */
+  }
+
+  .heart {
+    left: 48%;
+  }
+
+  /* Ajuste de animaciones para que al abrir se vea todo el contenido */
+  @keyframes openPaper {
+    0% { top: 0; }
+    100% { top: -260px; }
+  }
+
+  @keyframes closePaper {
+    0% { top: -260px; }
+    100% { top: 0; }
+  }
+}

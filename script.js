@@ -91,15 +91,17 @@ btnOpenElement.addEventListener('click', ()=> {
   btnOpenElement.disabled = true
   btnCloseElement.disabled = false
   const coverElement = document.querySelector('.cover')
+  const paperElement = document.querySelector('.paper')
   coverElement.classList.add('open-cover')
 
   setTimeout(()=>{
     //
     coverElement.style.zIndex = -1
+    paperElement.style.zIndex = 1
     
-    const paperElement = document.querySelector('.paper')
-    paperElement.classList.remove('close-paper')
-    paperElement.classList.add('open-paper')
+    const paperElem = document.querySelector('.paper')
+    paperElem.classList.remove('close-paper')
+    paperElem.classList.add('open-paper')
 
     // animacion del corazón
     const heartElement = document.querySelector('.heart')
@@ -114,11 +116,12 @@ btnCloseElement.addEventListener('click', ()=> {
 
   const coverElement = document.querySelector('.cover')
   const paperElement = document.querySelector('.paper')
-  paperElement.classList.remove('open-paper')
+  paperElement.style.zIndex = -1
   paperElement.classList.add('close-paper')
   
   setTimeout(()=>{
     coverElement.style.zIndex = 0
+
     coverElement.classList.remove('open-cover')
 
     // animacion del corazón
@@ -126,3 +129,40 @@ btnCloseElement.addEventListener('click', ()=> {
     heartElement.style.display = 'none'
   },500)
 })
+
+// Habilitar scroll en el paper
+const paperElement = document.querySelector('.paper')
+
+if (paperElement) {
+  // Permitir scroll con rueda en desktop
+  paperElement.addEventListener('wheel', (e) => {
+    const scrollAmount = e.deltaY > 0 ? 30 : -30
+    const maxScroll = paperElement.scrollHeight - paperElement.clientHeight
+    
+    if (paperElement.scrollTop + scrollAmount >= 0 && paperElement.scrollTop + scrollAmount <= maxScroll) {
+      e.preventDefault()
+      paperElement.scrollTop += scrollAmount
+    }
+  }, { passive: false })
+
+  // Permitir scroll con gestos táctiles en móvil
+  let lastTouchY = 0
+  
+  paperElement.addEventListener('touchstart', (e) => {
+    lastTouchY = e.touches[0].clientY
+  }, { passive: true })
+
+  paperElement.addEventListener('touchmove', (e) => {
+    const currentY = e.touches[0].clientY
+    const diff = lastTouchY - currentY
+    const maxScroll = paperElement.scrollHeight - paperElement.clientHeight
+    
+    if (diff !== 0) {
+      if (paperElement.scrollTop + diff >= 0 && paperElement.scrollTop + diff <= maxScroll) {
+        e.preventDefault()
+        paperElement.scrollTop += diff
+        lastTouchY = currentY
+      }
+    }
+  }, { passive: false })
+}
