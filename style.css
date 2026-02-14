@@ -84,7 +84,7 @@ position: absolute;
   pointer-events: auto;
 
   width: 600px;        /* ahora cabe dentro del sobre */
-  height: 300px;       /* altura fija igual al sobre */
+  height: 250px;       /* altura fija igual al sobre */
   overflow-y: scroll;  /* siempre mostrar scroll si es necesario */
   overflow-x: hidden;  /* no scroll horizontal */
   -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
