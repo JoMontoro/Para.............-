@@ -52,7 +52,8 @@ main {
   gap: 3rem;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100dvh;
+  padding: 1rem;
 }
 
 .container-letter {
@@ -82,8 +83,9 @@ position: absolute;
   background: white;
 
   width: 600px;        /* ahora cabe dentro del sobre */
-  max-height: 300px;   /* mismo tamaño visual del sobre */
+  height: 300px;       /* altura fija igual al sobre */
   overflow-y: auto;    /* scroll si el texto es largo */
+  overflow-x: hidden;  /* no scroll horizontal */
 
   border-radius: 8px;
   transition: all .75s;
@@ -96,6 +98,114 @@ position: absolute;
   border-right: 300px solid #e96ce9;
   border-top: 150px solid transparent;
   border-bottom: 150px solid #f895e8;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  main {
+    gap: 1.5rem;
+  }
+
+  .cover {
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 80px solid #ac54c2;
+    border-bottom: 80px solid transparent;
+  }
+
+.paper {
+    width: 280px;
+    height: 145px;
+    padding: 0.8rem;
+    font-size: 0.85rem;
+    line-height: 1.2rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .letter {
+    border-left: 140px solid #e96ce9;
+    border-right: 140px solid #e96ce9;
+    border-top: 80px solid transparent;
+    border-bottom: 80px solid #f895e8;
+  }
+
+  .options {
+    gap: 2rem;
+
+    & button {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  .heart {
+    font-size: 2rem;
+  }
+
+  @keyframes openPaper {
+    0% {
+      top: 0;
+    }
+    100% {
+      top: -170px;
+    }
+  }
+
+  @keyframes closePaper {
+    0% {
+      top: -170px;
+    }
+    100% {
+      top: 0;
+    }
+  }
+
+  .loader-content {
+    padding: 1rem 1.5rem;
+    max-width: 90vw;
+  }
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border-width: 4px;
+  }
+
+  .progress {
+    font-size: 0.9rem;
+  }
+
+  .loader-form {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .loader-form input[type="text"] {
+    width: 140px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .loader-form input[type="range"] {
+    width: 140px;
+    height: 6px;
+  }
+
+  .loader-form input[type="range"]::-webkit-slider-thumb {
+    width: 18px;
+    height: 18px;
+  }
+
+  .loader-form input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+  }
+
+  .loader-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
 }
 
 .options {
